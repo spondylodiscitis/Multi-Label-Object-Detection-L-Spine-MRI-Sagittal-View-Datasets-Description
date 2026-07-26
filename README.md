@@ -843,7 +843,20 @@ This multi-center study involves six affiliated hospitals of **The Catholic Univ
 * Department of Data Science, The Catholic University of Korea
 * Department of Orthopedic Surgery, The Catholic University of Korea
 
-### Research Director
+
+### Supervisor - Data Science Field
+
+**Youjin Shin, Ph.D.**
+Department of Data Science,
+The Catholic University of Korea
+
+Email: [yj.shinn@catholic.ac.kr](mailto:yj.shinn@catholic.ac.kr)
+
+Youjin Shin supervised the overall experimental design and technical direction of the study. Her contributions included establishing the methodological framework, guiding model development and evaluation, supervising student researchers, reviewing the experimental pipeline, and shaping the overall research strategy from dataset construction to final analysis.
+
+
+
+### Supervisor - Medical & Clinical Field
 
 **Joonghyun Ahn, M.D.**
 Department of Orthopedic Surgery,
@@ -853,18 +866,6 @@ The Catholic University of Korea
 Email: [ajhssnim@gmail.com](mailto:ajhssnim@gmail.com)
 
 Joonghyun Ahn provided overall clinical and medical supervision for the study. His contributions included defining the clinical scope of the project, establishing the patient cohort and eligibility criteria, guiding the annotation protocol, participating in vertebral lesion annotation and consensus review, and providing expert interpretation of spine MRI findings.
-
-
-
-### Co-Researcher and ADSLAB Supervisor
-
-**Youjin Shin, Ph.D.**
-Department of Data Science,
-The Catholic University of Korea
-
-Email: [yj.shinn@catholic.ac.kr](mailto:yj.shinn@catholic.ac.kr)
-
-Youjin Shin supervised the overall experimental design and technical direction of the study. Her contributions included establishing the methodological framework, guiding model development and evaluation, supervising student researchers, reviewing the experimental pipeline, and shaping the overall research strategy from dataset construction to final analysis.
 
 
 
