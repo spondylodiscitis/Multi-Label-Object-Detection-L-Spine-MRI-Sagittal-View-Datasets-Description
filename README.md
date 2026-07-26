@@ -852,6 +852,10 @@ The Catholic University of Korea
 
 Email: [ajhssnim@gmail.com](mailto:ajhssnim@gmail.com)
 
+Joonghyun Ahn provided overall clinical and medical supervision for the study. His contributions included defining the clinical scope of the project, establishing the patient cohort and eligibility criteria, guiding the annotation protocol, participating in vertebral lesion annotation and consensus review, and providing expert interpretation of spine MRI findings.
+
+
+
 ### Co-Researcher and ADSLAB Supervisor
 
 **Youjin Shin, Ph.D.**
@@ -859,6 +863,10 @@ Department of Data Science,
 The Catholic University of Korea
 
 Email: [yj.shinn@catholic.ac.kr](mailto:yj.shinn@catholic.ac.kr)
+
+Youjin Shin supervised the overall experimental design and technical direction of the study. Her contributions included establishing the methodological framework, guiding model development and evaluation, supervising student researchers, reviewing the experimental pipeline, and shaping the overall research strategy from dataset construction to final analysis.
+
+
 
 ### Researcher and Clinical Research Coordinator
 
@@ -869,7 +877,11 @@ The Catholic University of Korea
 
 Email: [leejune0502@catholic.ac.kr](mailto:leejune0502@catholic.ac.kr)
 
-June Lee contributed to dataset construction, annotation management, clinical research coordination, data preprocessing, and model development. He is scheduled to undertake his mandatory military service in the Republic of Korea Navy (R.O.K. Navy), where he will serve as an Artificial Intelligence Development Specialist.
+June Lee contributed to dataset construction, annotation management, clinical research coordination, data preprocessing, dataset quality control, experimental implementation, and model development. He also prepared the dataset documentation and reproducible analysis pipeline for research continuity and handover.
+
+"He is scheduled to fulfill his mandatory military service in the Republic of Korea Navy (R.O.K. Navy) as an Artificial Intelligence Development Specialist."
+
+
 
 ### Contact Policy
 
