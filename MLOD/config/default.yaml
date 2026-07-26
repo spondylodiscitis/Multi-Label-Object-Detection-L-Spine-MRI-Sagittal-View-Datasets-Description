@@ -1,0 +1,87 @@
+project:
+  name: MLOD
+  seed: 42
+  output_dir: outputs
+
+data:
+  root: /path/to/datasets_yolo_8_1_1
+  image_size: 640
+  num_classes: 9
+  class_names:
+    - VCF
+    - Old VCF
+    - Cement
+    - Fixation
+    - Hemangioma
+    - Malignant
+    - Schmorl's Node
+    - Kummell's Disease
+    - Infection
+  class_counts:
+    - 14144
+    - 7626
+    - 2810
+    - 2641
+    - 550
+    - 6485
+    - 3382
+    - 1523
+    - 1487
+  min_box_wh: 2.0
+
+model:
+  backbone_pretrained: true
+  use_neck: true
+  neck_channels: 1536
+  neck_norm: ln
+  neck_activation: gelu
+  freeze_stem: false
+
+  num_stages: 2
+  stage_positive_iou_thresholds: [0.5, 0.6]
+  stage_negative_iou_thresholds: [0.4, 0.5]
+
+  label_attention_tau: 0.5
+  label_attention_learnable: true
+
+  rpn_pre_nms_top_n_train: 2000
+  rpn_post_nms_top_n_train: 1000
+  rpn_pre_nms_top_n_test: 1000
+  rpn_post_nms_top_n_test: 300
+  rpn_nms_threshold: 0.7
+  roi_batch_size_per_image: 256
+  roi_positive_fraction: 0.5
+
+  score_threshold: 0.05
+  nms_threshold: 0.5
+  detections_per_image: 100
+
+loss:
+  asl_gamma_positive: 0.0
+  asl_gamma_negative: 4.0
+  asl_clip: 0.05
+  class_balance_beta: 0.5
+  regression_beta: 1.0
+
+train:
+  epochs: 30
+  batch_size: 4
+  learning_rate: 0.0001
+  weight_decay: 0.01
+  num_workers: 0
+  max_gradient_norm: 5.0
+  device: auto
+  best_checkpoint: outputs/checkpoints/best_map50.pth
+  last_checkpoint: null
+  log_csv: outputs/logs/training_history.csv
+
+inference:
+  checkpoint: outputs/checkpoints/best_map50.pth
+  threshold_json: null
+  default_class_threshold: 0.30
+  model_score_threshold: 0.001
+  class_nms_threshold: 0.5
+  detections_per_image: 300
+  object_merge_iou: 0.55
+  max_objects: 20
+  legend_width: 520

@@ -1,0 +1,9 @@
+[project]
+name = "mlod-spine-mri"
+version = "0.1.0"
+description = "Multi-label cascade object detection for sagittal spine MRI"
+requires-python = ">=3.10"
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"

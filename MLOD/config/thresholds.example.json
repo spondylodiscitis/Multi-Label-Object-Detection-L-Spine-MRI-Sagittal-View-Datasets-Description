@@ -1,0 +1,13 @@
+{
+  "class_thresholds": {
+    "VCF": 0.30,
+    "Old VCF": 0.30,
+    "Cement": 0.30,
+    "Fixation": 0.30,
+    "Hemangioma": 0.30,
+    "Malignant": 0.30,
+    "Schmorl's Node": 0.30,
+    "Kummell's Disease": 0.30,
+    "Infection": 0.30
+  }
+}
