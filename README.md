@@ -869,7 +869,7 @@ The Catholic University of Korea
 
 Email: [leejune0502@catholic.ac.kr](mailto:leejune0502@catholic.ac.kr)
 
-June Lee contributed to dataset construction, annotation management, clinical research coordination, data preprocessing, and model development. He is scheduled to begin service in the **Republic of Korea Navy**.
+June Lee contributed to dataset construction, annotation management, clinical research coordination, data preprocessing, and model development. He is scheduled to undertake his mandatory military service in the Republic of Korea Navy (R.O.K. Navy), where he will serve as an Artificial Intelligence Development Specialist.
 
 ### Contact Policy
 
