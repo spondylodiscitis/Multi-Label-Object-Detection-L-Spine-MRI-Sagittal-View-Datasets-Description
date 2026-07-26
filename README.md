@@ -1,8 +1,6 @@
-# Multi-Label-Object-Detection-L-Spine-MRI-Sagittal-View-Datasets-Description
-L-Spine MRI, Sagittal view, Multi-center datasets (Department of Orthopedic Surgery, College of Medicine, The Catholic University of Korea)
+# Multi-Center Sagittal L-Spine MRI Multi-Label Object Detection Dataset
 
-
-# Multi-Center Spine MRI Multi-Label Object Detection Dataset
+Documentation of a retrospective multi-center sagittal lumbar-spine MRI dataset developed for multi-label vertebral lesion object detection.
 
 ## Overview
 
@@ -62,31 +60,198 @@ All clinical data should be handled according to the relevant institutional revi
 
 ---
 
+## Study Cohort and Ethical Approval
+
+This retrospective multi-center study included lumbar-spine MRI examinations collected from six tertiary academic hospitals affiliated with **The Catholic University of Korea**.
+
+Institutional Review Board approval was obtained from the participating institutions.
+
+- **IRB approval number:** `HC23WIDB0074`
+- **Study design:** Retrospective multi-center study
+- **Participating institutions:** Six tertiary academic hospitals
+- **Study period:** March 2013 to February 2023
+- **Total number of patients:** 733
+- **Data handling:** All images were de-identified before analysis
+- **Dataset split:** Patient-level split to prevent data leakage
+
+The cohort included patients who underwent lumbar-spine MRI and bone biopsy and were diagnosed with vertebral compression fracture or metastatic spinal tumors. Sagittal T1-weighted and T2-weighted MRI scans acquired during clinical evaluation of vertebral fractures and tumor-related conditions were used.
+
+### Participating Hospitals
+
+- Seoul St. Mary's Hospital
+- Incheon St. Mary's Hospital
+- Bucheon St. Mary's Hospital
+- Uijeongbu St. Mary's Hospital
+- Yeouido St. Mary's Hospital
+- St. Vincent's Hospital
+
+### Annotation Protocol
+
+Vertebral bodies were annotated with axis-aligned bounding boxes by clinicians specializing in spine disease. Annotation decisions were based on radiology reports and imaging findings and were verified through consensus review.
+
+Each bounding box could receive one or more labels, allowing pathological and procedural findings to coexist in the same vertebral body.
+
+The nine labels were:
+
+1. Fracture
+2. Chronic fracture
+3. Vertebroplasty
+4. Screw fixation
+5. Hemangioma
+6. Malignant
+7. Schmorl's node
+8. Kummell's disease
+9. Spondylitis
+
+In this repository, the corresponding internal class names are:
+
+| Paper terminology | Repository class name |
+|---|---|
+| Fracture | VCF |
+| Chronic fracture | Old VCF |
+| Vertebroplasty | Cement |
+| Screw fixation | Fixation |
+| Hemangioma | Hemangioma |
+| Malignant | Malignant |
+| Schmorl's node | Schmorl's Node |
+| Kummell's disease | Kummell's Disease |
+| Spondylitis | Infection |
+
+---
+
 ## Dataset Statistics
 
-The current dataset split contains:
+The dataset was divided at the **patient level** into training, validation, and test sets. Therefore, images from the same patient were not assigned to multiple splits.
 
-| Split      | Number of images |
-| ---------- | ---------------: |
-| Training   |           10,483 |
-| Validation |            1,280 |
-| Test       |            1,446 |
-| **Total**  |       **13,209** |
+| Split | Patients | Images | Bounding boxes | Mean labels per box |
+|---|---:|---:|---:|---:|
+| Training | 586 | 10,483 | 26,371 | 1.37 |
+| Validation | 73 | 1,280 | 3,592 | 1.29 |
+| Test | 74 | 1,446 | 3,489 | 1.33 |
+| **Total** | **733** | **13,209** | **33,452** | **1.35** |
 
-The reported numbers refer to image files paired with annotation files.
+The image split corresponds approximately to:
 
-Additional statistics that should be calculated before publication include:
+| Split | Image proportion |
+|---|---:|
+| Training | 79.36% |
+| Validation | 9.69% |
+| Test | 10.95% |
 
-* Number of unique patients
-* Number of images per institution
-* Number of bounding boxes
-* Number of annotations per class
-* Number of patients per split
-* Average number of bounding boxes per image
-* Average number of labels per bounding box
-* Most frequent multi-label combinations
-* MRI sequence distribution
-* Anatomical level distribution
+![Number of images by dataset split](assets/figures/01_split_image_counts.png)
+
+### Class Frequencies
+
+Because one bounding box may contain multiple labels, the sum of class frequencies exceeds the total number of bounding boxes.
+
+| Class ID | Repository class | Paper terminology | Number of labels |
+|---:|---|---|---:|
+| 0 | VCF | Fracture | 16,066 |
+| 1 | Old VCF | Chronic fracture | 8,343 |
+| 2 | Cement | Vertebroplasty | 3,040 |
+| 3 | Fixation | Screw fixation | 2,859 |
+| 4 | Hemangioma | Hemangioma | 629 |
+| 5 | Malignant | Malignant | 7,045 |
+| 6 | Schmorl's Node | Schmorl's node | 3,900 |
+| 7 | Kummell's Disease | Kummell's disease | 1,649 |
+| 8 | Infection | Spondylitis | 1,759 |
+|  | **Total class assignments** |  | **45,290** |
+
+The overall mean of `1.35` labels per bounding box is consistent with the multi-label annotation design.
+
+### Class Distribution
+
+![Class distribution by bounding-box count](assets/figures/02_class_box_distribution.png)
+
+![Class distribution by image count](assets/figures/03_class_image_distribution.png)
+
+The dataset is substantially imbalanced:
+
+- `VCF` is the most frequent label.
+- `Old VCF` and `Malignant` are also common.
+- `Hemangioma` is the rarest class.
+- `Kummell's Disease` and `Infection` are relatively uncommon.
+- A single image may contain several annotated vertebral levels, so box counts can be considerably higher than image counts.
+
+This imbalance should be considered when selecting class-weighting schemes, sampling methods, loss functions, and class-specific confidence thresholds.
+
+### Bounding Boxes per Image
+
+![Bounding boxes per image](assets/figures/04_boxes_per_image.png)
+
+Most images contain one to three bounding boxes, whereas a smaller subset contains several abnormal vertebral levels. The right-skewed distribution is consistent with examinations containing multilevel fractures, metastatic lesions, postoperative levels, or multiple endplate abnormalities.
+
+### Labels per Bounding Box
+
+![Labels per bounding box](assets/figures/05_labels_per_box.png)
+
+Most boxes contain a single label, but a substantial proportion contains two labels. Boxes with three labels occur less frequently.
+
+Common combinations include:
+
+```text
+VCF + Malignant
+Old VCF + Cement
+Old VCF + Schmorl's Node
+VCF + Kummell's Disease
+VCF + Infection
+VCF + Cement
+```
+
+### Bounding-Box Geometry
+
+![Normalized bounding-box area distribution](assets/figures/06_box_area_distribution.png)
+
+Most boxes occupy a relatively small portion of the full sagittal MRI image, which is consistent with vertebral-body-level annotation.
+
+![Normalized bounding-box width versus height](assets/figures/07_box_width_height.png)
+
+The width-height distribution forms a compact cluster, showing relatively consistent annotation geometry across the dataset.
+
+![Bounding-box aspect-ratio distribution](assets/figures/08_box_aspect_ratio.png)
+
+Most boxes are wider than they are tall, with a width-to-height ratio concentrated around approximately `1.2–1.5`, reflecting the projected shape of vertebral bodies on sagittal MRI.
+
+### Multi-Label Combinations
+
+![Most common label combinations](assets/figures/09_top_multilabel_combinations.png)
+
+Single-label `VCF`, `Old VCF`, and `Malignant` annotations are common. Frequent multi-label combinations demonstrate that structural collapse, underlying disease, and procedural status may coexist in the same vertebral body.
+
+### Class Co-Occurrence
+
+![Class co-occurrence matrix](assets/figures/10_class_cooccurrence_heatmap.png)
+
+The diagonal represents individual class frequency. Off-diagonal cells represent labels assigned together to the same bounding box.
+
+Notable patterns include:
+
+- `VCF` commonly co-occurs with `Malignant`.
+- `VCF` also co-occurs with `Kummell's Disease`, `Infection`, `Cement`, and `Fixation`.
+- `Old VCF` frequently co-occurs with `Cement` and `Schmorl's Node`.
+- `Hemangioma` is usually annotated as an isolated finding.
+
+Because raw co-occurrence counts are influenced by class prevalence, normalized measures such as conditional frequency or Jaccard similarity may be useful for additional analysis.
+
+### Original Image Dimensions
+
+![Most common original image dimensions](assets/figures/12_image_size_distribution.png)
+
+The source images have heterogeneous spatial resolutions. `512 × 512` is the most common resolution, followed by several other square and non-square formats. This heterogeneity likely reflects differences in scanner systems, institutional protocols, and image-export pipelines.
+
+For model input, all images are resized to `640 × 640`.
+
+### Dataset Characteristics
+
+The dataset has the following principal characteristics:
+
+1. **Multi-center heterogeneity** across six tertiary academic hospitals
+2. **Patient-level split** with 586 training, 73 validation, and 74 test patients
+3. **Strong class imbalance**, particularly between VCF and rare classes
+4. **Multiple objects per image**, including multilevel spinal abnormalities
+5. **Multi-label objects**, with a mean of 1.35 labels per bounding box
+6. **Consistent vertebral-body-scale box geometry**
+7. **Heterogeneous original image dimensions**
 
 ---
 
@@ -501,7 +666,7 @@ This repository does not contain:
 * DICOM metadata
 * Original clinical reports
 * Original MRI images
-* Institution-identifying metadata
+* Institution-specific image metadata not required for analysis
 
 The dataset is available only under the relevant institutional approvals and data-use agreements.
 
@@ -716,6 +881,14 @@ Requests for identifiable patient data or unrestricted access to the original cl
 ---
 
 ## Version History
+
+### Version 1.1
+
+* Added the complete 733-patient cohort description
+* Added IRB approval information (`HC23WIDB0074`)
+* Added patient-level split statistics
+* Added bounding-box and class-frequency statistics
+* Added dataset distribution and annotation-analysis figures
 
 ### Version 1.0
 
