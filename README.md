@@ -846,8 +846,8 @@ This multi-center study involves six affiliated hospitals of **The Catholic Univ
 ### Research Director
 
 **Joonghyun Ahn, M.D.**
-Department of Orthopedic Surgery
-Bucheon St. Mary's Hospital
+Department of Orthopedic Surgery,
+Bucheon St. Mary's Hospital,
 The Catholic University of Korea
 
 Email: [ajhssnim@gmail.com](mailto:ajhssnim@gmail.com)
@@ -855,7 +855,7 @@ Email: [ajhssnim@gmail.com](mailto:ajhssnim@gmail.com)
 ### Co-Researcher and ADSLAB Supervisor
 
 **Youjin Shin, Ph.D.**
-Department of Data Science
+Department of Data Science,
 The Catholic University of Korea
 
 Email: [yj.shinn@catholic.ac.kr](mailto:yj.shinn@catholic.ac.kr)
@@ -863,8 +863,8 @@ Email: [yj.shinn@catholic.ac.kr](mailto:yj.shinn@catholic.ac.kr)
 ### Researcher and Clinical Research Coordinator
 
 **June Lee**
-Department of Data Science
-Department of Orthopedic Surgery
+Department of Data Science,
+Department of Orthopedic Surgery,
 The Catholic University of Korea
 
 Email: [leejune0502@catholic.ac.kr](mailto:leejune0502@catholic.ac.kr)
